@@ -25,4 +25,4 @@ jobs:
       run: dotnet build ServerSimulator.sln --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test ServerSimulator.sln --no-build --verbosity normal
+      run: dotnet test ServerSimulator.sln --no-build --configuration Release --verbosity normal
