@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ServerSimulator.Application.UI;
 using ServerSimulator.Library.Configurations;
 using ServerSimulator.Library.Factories;
 using ServerSimulator.Library.Logging;
@@ -23,80 +24,47 @@ services.AddTransient<IServerWorkloadManager, ServerWorkloadManager>();
 services.AddTransient<ServerInitializer>();
 services.AddTransient<ServerManager>();
 services.AddTransient<IValidator<ServerConfiguration>, ServerConfigurationValidator>();
+services.AddTransient<IUserInterface, ConsoleUserInterface>();
+services.AddTransient<ServerSimulator.Application.ServerSimulator>();
 
 services.AddSingleton<SnapshotLogger>();
 services.AddSingleton<ISnapshotService>(sp => 
     new SnapshotService(sp.GetRequiredService<SnapshotLogger>(), TimeSpan.FromSeconds(2)));
 
-services.AddTransient<ServerSimulator.Application.ServerSimulator>();
 
 var provider = services.BuildServiceProvider();
 
-Console.ForegroundColor = ConsoleColor.Cyan;
-Console.WriteLine("=========================================");
-Console.WriteLine("   SERVER SIMULATOR CLI v1.0   ");
-Console.WriteLine("=========================================");
-Console.ResetColor();
+var ui = provider.GetRequiredService<IUserInterface>();
+var app = provider.GetRequiredService<ServerSimulator.Application.ServerSimulator>();
+
+ui.ShowHeader();
 
 try
 {
-    var app = provider.GetRequiredService<ServerSimulator.Application.ServerSimulator>();
-
-    string configPath = PromptString("Enter configuration file path", "servers_config.json");
+    string configPath = ui.PromptString("Enter configuration file path", "servers_config.json");
     
     if (!File.Exists(configPath))
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"❌ Error: Configuration file '{configPath}' not found.");
-        Console.ResetColor();
+        ui.ShowError($"Configuration file '{configPath}' not found.");
         return;
     }
 
-    int playerCount = PromptInt("Enter number of players per server", 50);
-    int duration = PromptInt("Enter max connection duration (ms)", 3000);
+    int playerCount = ui.PromptInt("Enter number of players per server", 50);
+    int duration = ui.PromptInt("Enter max connection duration (ms)", 3000);
 
-    Console.WriteLine($"\n[INFO] Initializing servers from: {configPath}...");
+    ui.ShowInfo($"Initializing servers from: {configPath}...");
     app.Initialize(configPath);
 
-    Console.WriteLine($"[INFO] Starting simulation for {playerCount} players...");
+    ui.ShowInfo($"Starting simulation for {playerCount} players...");
     await app.RunSimulation(playerCount, duration);
     
-    Console.WriteLine("\n✅ Simulation finished.");
+    ui.ShowInfo("Simulation finished successfully.");
 }
 catch (Exception ex)
 {
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine($"\n🔥 CRITICAL ERROR: {ex.Message}");
-    Console.ResetColor();
+    ui.ShowError($"CRITICAL ERROR: {ex.Message}");
 }
 finally
 {
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
-}
-
-static string PromptString(string message, string defaultValue)
-{
-    Console.Write($"{message} [default: {defaultValue}]: ");
-    var input = Console.ReadLine();
-    return string.IsNullOrWhiteSpace(input) ? defaultValue : input;
-}
-
-static int PromptInt(string message, int defaultValue)
-{
-    while (true)
-    {
-        Console.Write($"{message} [default: {defaultValue}]: ");
-        var input = Console.ReadLine();
-
-        if (string.IsNullOrWhiteSpace(input))
-            return defaultValue;
-
-        if (int.TryParse(input, out int result) && result > 0)
-            return result;
-
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("Invalid input. Please enter a positive number.");
-        Console.ResetColor();
-    }
+    ui.WaitForKeyPress();
 }
