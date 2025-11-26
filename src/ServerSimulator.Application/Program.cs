@@ -9,6 +9,9 @@ using ServerSimulator.Library.Services;
 using ServerSimulator.Library.Services.ServerWorkloadManager;
 using ServerSimulator.Library.Services.SnapshotService;
 using ServerSimulator.Library.Validators;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 var services = new ServiceCollection();
 
