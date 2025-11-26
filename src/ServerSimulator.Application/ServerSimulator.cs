@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ServerSimulator.Library.Entities;
 using ServerSimulator.Library.Services;
-using ServerSimulator.Library.Services.SnapshotService;
+using ServerSimulator.Library.Interfaces;
 
 namespace ServerSimulator.Application;
 
