@@ -1,0 +1,44 @@
+[
+  {
+    "MaxCapacity": 100,
+    "CurrentOccupancy": 85,
+    "ServerId": "SRV-001",
+    "Ip": "192.168.0.1",
+    "Name": "Alpha Squad"
+  },
+  {
+    "MaxCapacity": 200,
+    "CurrentOccupancy": 10,
+    "ServerId": "SRV-002",
+    "Ip": "192.168.0.2",
+    "Name": "Bravo Team"
+  },
+  {
+    "MaxCapacity": 500,
+    "CurrentOccupancy": 420,
+    "ServerId": "SRV-003",
+    "Ip": "10.0.0.15",
+    "Name": "Charlie Cluster (High Perf)"
+  },
+  {
+    "MaxCapacity": 50,
+    "CurrentOccupancy": 2,
+    "ServerId": "SRV-004",
+    "Ip": "172.16.5.99",
+    "Name": "Delta SpecOps"
+  },
+  {
+    "MaxCapacity": 120,
+    "CurrentOccupancy": 115,
+    "ServerId": "SRV-005",
+    "Ip": "192.168.1.50",
+    "Name": "Echo Base (Overloaded)"
+  },
+  {
+    "MaxCapacity": 80,
+    "CurrentOccupancy": 0,
+    "ServerId": "SRV-006",
+    "Ip": "192.168.1.51",
+    "Name": "Foxtrot Reserve"
+  }
+]
