@@ -1,4 +1,4 @@
-﻿namespace ServerSimulator.Library.Services.ServerWorkloadManager;
+﻿namespace ServerSimulator.Library.Interfaces;
 
 public interface IServerWorkloadManager
 {

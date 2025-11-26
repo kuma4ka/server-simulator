@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ServerSimulator.Library.Configurations;
-using ServerSimulator.Library.Services.ServerWorkloadManager;
+using ServerSimulator.Library.Interfaces;
 
 namespace ServerSimulator.Library.Entities;
 
@@ -13,7 +13,6 @@ public class Server
 
     private int _currentOccupancy;
     private bool _isHighLoad;
-    private const float WorkloadThresholdPercentage = 0.8f;
 
     public Server(
         ServerConfiguration configuration,
@@ -61,6 +60,6 @@ public class Server
 
     private void UpdateLoadState()
     {
-        _isHighLoad = _workloadManager.CheckAndLogLoadState(_isHighLoad, _currentOccupancy, _configuration.MaxCapacity, WorkloadThresholdPercentage);
+        _isHighLoad = _workloadManager.CheckAndLogLoadState(_isHighLoad, _currentOccupancy, _configuration.MaxCapacity, _configuration.LoadThreshold);
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 using ServerSimulator.Library.Configurations;
 using ServerSimulator.Library.Entities;
+using ServerSimulator.Library.Interfaces;
 using ServerSimulator.Library.Services.ServerWorkloadManager;
 
 namespace ServerSimulator.Tests;

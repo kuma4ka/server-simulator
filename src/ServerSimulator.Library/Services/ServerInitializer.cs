@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ServerSimulator.Library.Configurations;
 using ServerSimulator.Library.Entities;
-using ServerSimulator.Library.Factories;
+using ServerSimulator.Library.Interfaces;
 
 namespace ServerSimulator.Library.Services;
 

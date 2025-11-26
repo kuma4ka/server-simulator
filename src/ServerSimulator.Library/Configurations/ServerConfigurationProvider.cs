@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
+using ServerSimulator.Library.Interfaces;
 
 namespace ServerSimulator.Library.Configurations;
-
-public interface IServerConfigurationProvider
-{
-    List<ServerConfiguration> GetConfigurations(string path);
-}
 
 public class ServerConfigurationProvider : IServerConfigurationProvider
 {

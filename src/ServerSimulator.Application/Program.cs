@@ -10,6 +10,7 @@ using ServerSimulator.Library.Services.ServerWorkloadManager;
 using ServerSimulator.Library.Services.SnapshotService;
 using ServerSimulator.Library.Validators;
 using System.Text;
+using ServerSimulator.Library.Interfaces;
 
 Console.OutputEncoding = Encoding.UTF8;
 
