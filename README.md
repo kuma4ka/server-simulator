@@ -60,4 +60,4 @@ dotnet test
 ```
 ---
 ### 👨‍💻 Author
-Refactored and maintained by [Dmytro Prokopenko](www.linkedin.com/in/dmytro-prokopenko-dev).
+Refactored and maintained by [Dmytro Prokopenko](https://linkedin.com/in/dmytro-prokopenko-dev).
