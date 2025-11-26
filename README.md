@@ -1,30 +1,63 @@
-# Server Simulator 🎮
+# Server Simulator 🕹️
 
-A robust .NET 8 simulation engine designed to emulate high-load game server environments. This project demonstrates advanced asynchronous programming models, Dependency Injection (DI), and clean architecture principles.
+![.NET Build & Test](https://github.com/kuma4ka/server-simulator/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/kuma4ka/server-simulator/actions/workflows/dotnet.yml)
+
+A highly concurrent simulation engine designed to emulate high-load game server environments. This project demonstrates the restoration and refactoring of legacy systems into a modern, **Clean Architecture** solution.
 
 ## 🚀 Features
 
 - **Async/Await Concurrency**: Efficiently handles thousands of simulated player connections using `SemaphoreSlim` and `Task` based parallelism.
-- **Solid Architecture**: Strictly follows SOLID principles with heavy usage of Dependency Injection.
-- **Clean Code**: Refactored from legacy codebases to modern .NET 8 standards (Primary Constructors, Records).
-- **Configuration Management**: JSON-based dynamic server configuration.
+- **Clean Architecture**: Separation of concerns with distinct layers for Domain logic, Application, and UI.
+- **Robust Validation**: Prevents invalid configurations using fluent validation rules.
+- **Containerization**: Fully dockerized application using multi-stage builds for optimized image size.
+- **Automated Testing**: Critical business logic covered by **xUnit** tests with **FluentAssertions**.
+- **CI/CD Pipeline**: Automated build and test workflow via **GitHub Actions**.
 
 ## 🛠 Tech Stack
 
 - **Core**: .NET 8 (C# 12)
+- **Architecture**: Dependency Injection (DI), SOLID
 - **Validation**: FluentValidation
-- **Logging**: Microsoft.Extensions.Logging
+- **Testing**: xUnit, NSubstitute, FluentAssertions
+- **DevOps**: Docker, GitHub Actions
 - **Data**: Newtonsoft.Json
 
 ## 🏗 Structure
 
-- **ServerSimulatorLib**: Core logic containing server entities, workload managers, and state management.
-- **ServerSimulator.ConsoleApp**: Entry point responsible for DI container composition and simulation lifecycle.
+The solution follows Clean Architecture principles:
+
+- **src/ServerSimulator.Library**: Core domain logic, entities, interfaces, and business rules.
+- **src/ServerSimulator.Application**: Console UI, Dependency Injection setup, and application entry point.
+- **src/ServerSimulator.Tests**: Unit tests ensuring reliability of the core logic.
 
 ## ▶️ How to Run
 
-1. Configure your servers in `servers_config.json`.
-2. Run the console application:
+### Option 1: Local .NET CLI
+
+1. Configure your servers in `src/ServerSimulator.Application/servers_config.json`.
+2. Run the application:
    ```bash
-   dotnet run --project src/ServerSimulator.ConsoleApp
-3. Enter the path to the config file when prompted (e.g., servers_config.json).
+   dotnet run --project src/ServerSimulator.Application
+3. Follow the interactive prompts in the console.
+
+### Option 2: Docker 🐳
+
+Run the application in an isolated container:
+
+1. Build the image:
+   ```bash
+   docker build -t server-simulator .
+2. Run the container (interactive mode):
+   ```bash
+   docker run -it --rm server-simulator
+3. Follow the interactive prompts in the console.
+
+### 🧪 Running Tests
+
+To verify the system integrity:
+```bash
+dotnet test
+```
+---
+### 👨‍💻 Author
+Refactored and maintained by [Dmytro Prokopenko](www.linkedin.com/in/dmytro-prokopenko-dev).
