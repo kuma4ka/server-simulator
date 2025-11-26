@@ -5,5 +5,6 @@ public record ServerConfiguration(
     int CurrentOccupancy,
     string ServerId,
     string Name,
-    string Ip
+    string Ip,
+    float LoadThreshold = 0.8f
 );

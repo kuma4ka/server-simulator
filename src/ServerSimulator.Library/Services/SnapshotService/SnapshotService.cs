@@ -1,9 +1,8 @@
 ﻿using ServerSimulator.Library.Entities;
+using ServerSimulator.Library.Interfaces;
 using ServerSimulator.Library.Logging;
 
 namespace ServerSimulator.Library.Services.SnapshotService;
-
-public interface ISnapshotService { void Start(List<Server> servers); }
 
 public class SnapshotService(SnapshotLogger snapshotLogger, TimeSpan period) : ISnapshotService, IDisposable
 {
