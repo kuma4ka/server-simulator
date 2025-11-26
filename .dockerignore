@@ -1,0 +1,73 @@
+﻿# Ignore git folder
+.git/
+.gitignore
+
+# Build results
+bin/
+obj/
+[Bb]uild*/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
+
+# Rider / IDEA
+.idea/
+**/.idea/**
+
+# NuGet packages
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+*.snupkg
+
+# Node modules
+node_modules/
+
+# dotenv
+.env
+
+# Cache
+*.[Cc]ache
+!*/
+
+# Test results
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+nunit-*.xml
+TestResult.xml
+
+# Benchmark
+BenchmarkDotNet.Artifacts/
+
+# Azure / publish
+publish/
+*.publishproj
+*.azurePubxml
+PublishScripts/
+
+# SQL files
+*.mdf
+*.ldf
+*.ndf
+
+# Other
+*.log
+*.tlog
+*.tmp
+*.tmp_proj
+~$*
+*~
+__pycache__/
+*.pyc
+.mfractor/
+.ionide/
+.localhistory/
+.vshistory/
+.history/
